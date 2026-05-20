@@ -6,22 +6,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'index',
-      component: () => import('@/views/ScanViewFeatureDetectView.vue')
+      component: () => import('@/views/PrintViewFeatureDetectView.vue')
     },
     {
-      path: '/scan',
-      name: 'scan',
+      path: '/print',
+      name: 'print',
       redirect: { name: 'index' }
     },
     {
-      path: '/scan-canvas',
-      name: 'scan-canvas',
-      component: () => import('@/views/CanvasScanView.vue')
-    },
-    {
-      path: '/scan-magica',
-      name: 'scan-magica',
-      component: () => import('@/views/MagicaScanView.vue')
+      path: '/print-canvas',
+      name: 'print-canvas',
+      component: () => import('@/views/CanvasPrintView.vue')
     },
     // catch all redirect to /
     {

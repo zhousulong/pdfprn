@@ -3,11 +3,10 @@
     <!-- Logo -->
     <div class="logo">
       <span class="logo-icon">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <rect x="2" y="2" width="18" height="18" rx="3" stroke="var(--color-accent)" stroke-width="1.5"/>
-          <path d="M6 6h10M6 9h10M6 12h10M6 15h6" stroke="var(--color-text-muted)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-          <line x1="1" y1="11" x2="21" y2="11" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/>
-          <rect x="1" y="9" width="20" height="4" fill="var(--color-accent-glow)" opacity="0.5"/>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9V2h12v7" />
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <rect x="6" y="14" width="12" height="8" fill="var(--color-accent-glow)" />
         </svg>
       </span>
       <div class="logo-text">

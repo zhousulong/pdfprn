@@ -1,13 +1,13 @@
 export const actions = {
-  navigateToScan: 'Start Scan',
-  navigateToHomePage: 'About Me',
+  navigateToScan: 'Start Printer Simulation',
+  navigateToHomePage: 'Home Page',
   navigateToSupportMe: 'Support Me',
   backToIndex: 'Back',
   preview: 'Preview',
   save: 'Save',
-  generateScannedPDF: 'Generate Scanned PDF',
+  generateScannedPDF: 'Generate Printed PDF',
   generating: 'Generating...',
-  downloadScannedPDF: 'Download Scanned PDF',
-  generateSuccess: 'Successfully Generated! ',
-  generateError: 'Failed to Generate! '
+  downloadScannedPDF: 'Download Printed PDF',
+  generateSuccess: 'Generated successfully!',
+  generateError: 'Failed to generate!'
 }

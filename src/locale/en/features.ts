@@ -2,32 +2,29 @@ export const features = {
   privacy: {
     title: 'Privacy',
     description:
-      "Your data stay on your device. We don't store any of your data. Everything is processed on your browser."
+      'All your documents are processed entirely in your browser and never leave your device. Complete peace of mind.'
   },
   speed: {
     title: 'Speed',
     description:
-      'Based on WebAssembly, No waiting for your PDF to be scanned. Just click the button and your PDF will be scanned in a second.'
+      'Powered by advanced Canvas filtering and Web Worker parallel rendering. No physical printing needed, get realistic results in seconds.'
   },
   customization: {
     title: 'Customization',
-    description:
-      'Tweak the settings to make your PDF look better. See the preview in real time. What You See Is What You Get.'
+    description: 'Fine-tune over 10 parameters like color shifting, registration offset, fuser defects, and ribbon aging with real-time preview.'
   },
   openSource: {
     title: 'Open Source',
     description:
-      'PDFSCAN is open source and available on {github}. Also, this site is inspired by another open source project {scanyourpdf}',
-    github: 'GitHub',
-    scanyourpdf: 'baicunko/scanyourpdf'
+      'PDFPRN is open source! You can deploy it locally and customize the defect rendering pipeline as you wish.'
   },
   mobileFriendly: {
-    title: 'Mobile Friendly',
-    description: 'PDFSCAN is mobile friendly. It works on all modern browsers and devices.'
+    title: 'Cross-platform',
+    description: 'PDFPRN works smoothly on smartphones and tablets across all major modern browsers.'
   },
   offlineUse: {
-    title: 'Offline Use',
+    title: 'Offline Support',
     description:
-      "PDFSCAN is offline-capable. It works even if you don't have a network connection."
+      'Core features run offline. No internet connection or slow uploads required to simulate high-fidelity printed documents.'
   }
 }

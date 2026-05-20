@@ -44,6 +44,7 @@ interface ScanRenderer {
     image: Blob,
     options?: {
       signal?: AbortSignal
+      pageIndex?: number
     }
   ): Promise<{
     blob: Blob
@@ -81,7 +82,8 @@ const scanImage = computedAsync(
     if (!props.scanRenderer || !image.value.blob) return
 
     const { blob } = await props.scanRenderer.renderPage(image.value.blob, {
-      signal: controller.signal
+      signal: controller.signal,
+      pageIndex: page.value - 1
     })
     return {
       blob

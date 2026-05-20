@@ -1,7 +1,7 @@
 import { ref, watch, readonly } from 'vue'
 
 export type ThemeMode = 'dark' | 'light' | 'system'
-const STORAGE_KEY = 'pdfscan-theme'
+const STORAGE_KEY = 'pdfprn-theme'
 
 const themeMode = ref<ThemeMode>(
   (localStorage.getItem(STORAGE_KEY) as ThemeMode) || 'system'

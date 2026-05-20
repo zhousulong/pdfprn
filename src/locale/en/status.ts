@@ -1,10 +1,10 @@
 export const status = {
-  notStarted: 'Not started',
+  notStarted: 'Not Started',
   error: 'Error: {error}',
   finished: 'Finished',
   processsing: {
-    default: 'Processing',
-    combine: 'Combining PDF pages',
-    progress: 'Processing PDF pages: {current}/{total}'
+    default: 'Printing pages...',
+    combine: 'Assembling pages...',
+    progress: 'Printing pages: {current}/{total}'
   }
 }

@@ -6,10 +6,10 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- SEO -->
-    <title>PDFSCAN · 在线PDF扫描件模拟器 | Free Online PDF Scan Simulator</title>
-    <meta name="description" content="免费且安全的在线PDF扫描件生成器，支持一键将干净的PDF文件转换为质感真实、带噪点、倾斜和模糊的扫描件效果。纯前端处理，文件绝不上传，保护您的隐私安全。Free and secure online PDF scan simulator that converts clean PDFs into realistic scanned documents with noise, skew, and blur. Processed locally in browser for maximum privacy.">
-    <meta name="keywords" content="PDFSCAN, PDF扫描件, PDF扫描效果模拟器, 扫描件生成器, PDF scan simulator, look scanned, scan generator, pdf to scan, online scanner, 扫描版PDF" />
-    <meta name="author" content="PDFSCAN" />
+    <title>PDFPRN · 在线PDF打印机模拟器 | Free Online PDF Printer Simulator</title>
+    <meta name="description" content="免费且安全的在线PDF打印机生成器，支持一键将干净的PDF文件转换为质感真实、带瑕疵、偏色、重影和墨水晕染的打印效果。纯前端处理，文件绝不上传，保护您的隐私安全。Free and secure online PDF printer simulator that converts clean PDFs into realistic printed documents with defects, banding, ghosting, and bleeding. Processed locally in browser for maximum privacy.">
+    <meta name="keywords" content="PDFPRN, PDF打印件, PDF打印效果模拟器, 打印件生成器, PDF printer simulator, look printed, print generator, pdf to print, online printer, 打印版PDF" />
+    <meta name="author" content="PDFPRN" />
 
     <!-- Google Fonts (非阻塞加载) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +21,7 @@
     
     <script>
       function initTheme() {
-        const savedTheme = localStorage.getItem('pdfscan-theme') || 'system';
+        const savedTheme = localStorage.getItem('pdfprn-theme') || 'system';
         if (savedTheme === 'system') {
           const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');

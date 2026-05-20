@@ -1,65 +1,60 @@
-# 📄 PDFSCAN - PDF Scan Simulator
+# 🖨️ PDFPRN - PDF Printer Simulator (PDF 模拟打印机)
 
-PDFSCAN is a modern, secure, and pure frontend web application that converts clean digital PDF documents into realistic-looking scanned copies. 
+PDFPRN 是一款现代、安全、纯前端的 Web 应用程序，可将干净的数字化 PDF 文档转换成具有真实打印质感和打印机瑕疵的文档复本。
 
-Everything runs directly in your web browser—your documents never leave your device, ensuring maximum security and absolute privacy.
-
----
-
-## ⚡ Modernization & Key Enhancements
-
-PDFSCAN is a complete modernization of historical PDF scanning tools. Key upgrades include:
-* **Modern Tech Stack**: Fully refactored to **Vue 3**, **TypeScript**, and **Vite** for blazing fast compilation and hot-module reloading.
-* **"Dark Precision" Design System**: Designed a professional, industrial, and sleek interface featuring full responsive layouts and native, synchronized dark mode.
-* **Dynamic SEO Integration**: Automated SEO metadata with a reactive title watcher that localized document tab titles on the fly.
-* **Offline-First (PWA)**: Built-in service workers allow the simulator to run fully offline without any network connectivity.
-* **Dual Rendering Engine**: Supports standard browser canvas-level rendering alongside ImageMagick-powered WebAssembly scanner pipelines for maximum flexibility.
+所有处理过程均完全在您的本地浏览器中进行——您的文档绝不会上传到任何服务器，确保最高级别的安全性和绝对的隐私保护。
 
 ---
 
-## ✨ Features
+## ⚡ 核心功能与亮点
 
-* **100% Client-Side**: Zero server-side uploads or APIs. Absolute privacy.
-* **Real-time Live Preview**: View original and scanned documents side-by-side.
-* **Advanced Adjustments**: Fine-tune rotation angle, skew variance, brightness, contrast, noise levels, paper blur, border constraints, sepia/yellowish coloring, and more.
-* **Fast Export**: Instant scanned PDF generation and local browser download.
+PDFPRN 提供了高度逼真、克制且实用的打印机缺陷与物理质感模拟，包含 10 余种常见办公打印特征：
+
+* **丰富且实用的预设场景**：
+  * **激光高清彩打**：完美、无缺陷的新机彩色激光打印基准。
+  * **日常省墨/省粉模式**：模拟低碳环保或草稿纸打印，字迹轻微变淡发灰，但保持极佳的可读性。
+  * **硒鼓微脏（尘迹与轻微划痕）**：垂直方向的极细辊轮划痕，带有一点定影重影，模拟日常办公打印机常见的轻微脏污。
+  * **家用喷墨日常打印**：微弱的喷头堵塞条纹与细密的光栅步进横线（走纸线），非常写实。
+  * **普通纸轻微化水（纸张微糙）**：模拟低克重复印纸，墨水在纸张纤维中轻度晕染的毛边感。
+  * **常见针式票据（机打发票）**：模拟快递单和发票的针头撞击网点，字迹富有点阵质感。
+  * **套色微偏移**：模拟彩色多通道喷头微米级打滑，在有色字体边缘产生自然的“彩虹溢边重影”。
+* **有机去均匀化算法**：所有浓淡不均和条纹效果均引入了物理圆柱鼓轮周期波与送纸抖动（Jitter），杜绝机械式均匀网格，呈现极具人性的有机瑕疵。
+* **现代技术栈**：基于 **Vue 3**、**TypeScript**、**Vite** 及 **Naive UI** 构建。
+* **并行渲染优化**：使用 **Web Worker** 与 **OffscreenCanvas** 线程池在后台分流运算，大文档渲染不卡顿。
+* **离线运行 (PWA)**：内置 Service Worker，在无网络环境下依然可以完整运行。
 
 ---
 
-## 🧑‍💻 Development
+## 🧑‍💻 开发与运行
 
-### Setup & Install
-Ensure you have Node.js installed, then install dependencies:
+### 环境准备
+确保您的计算机上安装了 Node.js（推荐 v18+）。
+
+### 安装依赖
 ```sh
+pnpm install
+# 或者
 npm install
 ```
 
-### Dev Server
-Run local development server:
+### 启动开发服务器
 ```sh
+pnpm dev
+# 或者
 npm run dev
 ```
+启动后在浏览器中打开 `http://localhost:5173/` 即可访问。
 
-### Production Build
-Build optimized static assets to the `dist/` directory:
+### 构建生产包
+将优化后的静态资源打包至 `dist/` 目录：
 ```sh
+pnpm build
+# 或者
 npm run build
 ```
 
 ---
 
-## 📝 Statement & Attribution
+## ⚖️ 开源协议
 
-PDFSCAN is an open-source project created by building upon the excellent work of the open-source community:
-* Originally adapted from the [lookscanned.io](https://github.com/lookscanned/lookscanned.io) project by [seedgou](https://github.com/seedgou) (MIT License).
-* Heavily inspired by the original scanning concepts in [scanyourpdf](https://github.com/baicunko/scanyourpdf) by [baicunko](https://github.com/baicunko) (MIT License).
-
-### Open Source Projects Used
-* [ImageMagick WASM (Magica)](https://github.com/cancerberoSgx/magica) - WebAssembly port for advanced image processing.
-* [PDF.js](https://github.com/mozilla/pdf.js) - PDF parsing and rendering.
-
----
-
-## ⚖️ License
-
-Distributed under the **MIT License**. See `LICENSE` for details.
+本项目基于 **MIT License** 许可分发。详细信息请参阅 `LICENSE`。

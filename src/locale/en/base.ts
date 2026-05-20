@@ -1,19 +1,19 @@
 export const base = {
-  title: 'PDFSCAN',
-  subtitle: 'PDF Scan Simulator',
-  tagline: 'Local processing · No upload · Secure & Private',
+  title: 'PDFPRN',
+  subtitle: 'PDF Printer Simulator',
+  tagline: 'Client-side processing · No file uploads · Secure & Private',
   description:
-    'PDFSCAN is a pure frontend site that makes your PDFs look scanned! No need for printers and scanners anymore - everything you need to do is just a few clicks.',
-  scanTitle: 'Scan',
+    'PDFPRN is a pure frontend website that makes your PDFs look like they were printed by real printers. It supports color/grayscale printing for laser, inkjet, and dot-matrix printers, simulating various realistic printing defects. No need for physical printing anymore - just a few clicks.',
+  printTitle: 'Print Simulation',
   serviceWorker: {
-    offlineReady: 'App ready to work offline',
-    needRefresh: 'New version available, click to refresh.'
+    offlineReady: 'Offline cache is ready',
+    needRefresh: 'Website code updated. Click to refresh.'
   },
   theme: {
     dark: 'Dark Mode',
     light: 'Light Mode',
-    system: 'Follow System',
-    current: 'Current: {theme}. Click to cycle.'
+    system: 'System Theme',
+    current: 'Current theme: {theme}, click to toggle'
   },
   changelog: {
     title: 'Changelog',
@@ -27,7 +27,7 @@ export const base = {
     clear: 'Clear'
   },
   upload: {
-    hint: 'Drag and drop PDF here, or click to select',
-    selectedFiles: 'Selected Files'
+    hint: 'Drag and drop PDF file here, or click to upload',
+    selectedFiles: 'Selected file'
   }
 }
