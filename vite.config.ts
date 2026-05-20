@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "favicon.svg"],
+      includeAssets: ["favicon.svg"],
       workbox: {
         globPatterns: ["assets/*", "**/*.{js,css,html}"],
         maximumFileSizeToCacheInBytes: 10000000,
@@ -24,28 +24,10 @@ export default defineConfig({
         theme_color: "#0f0f13",
         icons: [
           {
-            "src": "pwa-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
+            "src": "favicon.svg",
+            "sizes": "32x32 48x48 96x96 128x128 256x256 512x512",
+            "type": "image/svg+xml",
             "purpose": "any"
-          },
-          {
-            "src": "pwa-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any"
-          },
-          {
-            "src": "pwa-maskable-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-          },
-          {
-            "src": "pwa-maskable-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
           }
         ],
       },
