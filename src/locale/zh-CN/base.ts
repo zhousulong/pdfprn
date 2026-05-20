@@ -4,6 +4,7 @@ export const base = {
   tagline: '客户端处理 · 文件不上传 · 安全私密',
   description:
     'PDFPRN 是一个能够让 PDF 看起来就像是打印机打印出来一样的纯前端网站。支持彩色/黑白打印，激光/喷墨/针式等多种打印机，模拟真实打印机的各种瑕疵。你再也不需要麻烦地打印之后扫描了，你所需要的就是鼠标点几下。',
+  keywords: 'PDFPRN, PDF打印件, PDF打印效果模拟器, 打印件生成器, 打印效果模拟, 打印机扫描仪, look printed, print generator, pdf to print, online printer, 打印版PDF, 电子打印件',
   printTitle: '打印模拟',
   serviceWorker: {
     offlineReady: '离线缓存已准备就绪',

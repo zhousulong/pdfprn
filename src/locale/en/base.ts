@@ -4,6 +4,7 @@ export const base = {
   tagline: 'Client-side processing · No file uploads · Secure & Private',
   description:
     'PDFPRN is a pure frontend website that makes your PDFs look like they were printed by real printers. It supports color/grayscale printing for laser, inkjet, and dot-matrix printers, simulating various realistic printing defects. No need for physical printing anymore - just a few clicks.',
+  keywords: 'PDFPRN, PDF printer simulator, look printed, print generator, pdf to print, online printer, scanned copy, print effect generator, simulated printout',
   printTitle: 'Print Simulation',
   serviceWorker: {
     offlineReady: 'Offline cache is ready',

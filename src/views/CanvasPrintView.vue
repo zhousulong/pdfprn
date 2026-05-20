@@ -56,8 +56,19 @@ const { t } = useI18n()
 const message = useMessage()
 
 useHead({
-  title: t('base.printTitle') + ' - ' + t('base.title'),
-  meta: [{ name: 'description', content: t('base.description') }]
+  title: () => `${t('base.printTitle')} · ${t('base.subtitle')} - ${t('base.title')}`,
+  meta: [
+    { name: 'description', content: () => t('base.description') },
+    { name: 'keywords', content: () => t('base.keywords') },
+    // Open Graph
+    { property: 'og:title', content: () => `${t('base.printTitle')} - ${t('base.title')}` },
+    { property: 'og:description', content: () => t('base.description') },
+    { property: 'og:type', content: 'website' },
+    // Twitter Card
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: () => `${t('base.printTitle')} - ${t('base.title')}` },
+    { name: 'twitter:description', content: () => t('base.description') }
+  ]
 })
 
 const pdf = ref<File | undefined>(undefined)
