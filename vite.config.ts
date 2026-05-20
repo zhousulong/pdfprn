@@ -17,11 +17,11 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 10000000,
       },
       manifest: {
-        name: "Look Scanned",
-        short_name: "Look Scanned",
+        name: "PDFPRN",
+        short_name: "PDFPRN",
         description:
-          "Look Scanned is a pure frontend site that makes your PDFs look scanned! No need for printers and scanners anymore - everything you need to do is just a few clicks.",
-        theme_color: "#ffffff",
+          "PDFPRN is a pure frontend website that makes your PDFs look like they were printed by real printers. Simulates color/grayscale laser, inkjet, and dot-matrix printers.",
+        theme_color: "#0f0f13",
         icons: [
           {
             "src": "pwa-192x192.png",
