@@ -1,4 +1,4 @@
-import { ref, watch, readonly } from 'vue'
+import { ref, watch } from 'vue'
 
 export type ThemeMode = 'dark' | 'light' | 'system'
 const STORAGE_KEY = 'pdfprn-theme'

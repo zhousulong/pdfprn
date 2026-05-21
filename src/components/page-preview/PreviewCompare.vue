@@ -111,13 +111,15 @@ const numPages = computedAsync(async () => {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
 }
 
 .preview-compare-main {
   flex: 1;
   min-height: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   width: 100%;
 }

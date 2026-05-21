@@ -8,7 +8,6 @@ import { createBandingOverlay } from './defect-generators/banding'
 import { applyGhosting } from './defect-generators/ghosting'
 import { applyFuserStreak } from './defect-generators/fuser-streak'
 import { applyRegistrationOffset } from './defect-generators/registration'
-import { createPaperTextureBlob } from './defect-generators/paper-texture'
 
 export async function printCanvas(
   canvas: HTMLCanvasElement | OffscreenCanvas,
