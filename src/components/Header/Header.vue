@@ -515,6 +515,7 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .header {
     padding: 0 var(--space-3);
+    height: var(--header-h);
   }
   .center {
     display: none;
@@ -526,27 +527,36 @@ onUnmounted(() => {
     font-size: var(--text-sm);
   }
   .logo-sub {
-    font-size: 10px;
+    display: none; /* hide subtitle on mobile */
+  }
+  .version-badge {
+    display: none; /* hide version on mobile */
   }
   .theme-btn-label {
     display: none;
   }
   .theme-btn {
     padding: var(--space-2);
+    min-height: 36px;
+    min-width: 36px;
   }
   .lang-btn {
     padding: var(--space-2);
     font-size: var(--text-xs);
+    min-height: 36px;
   }
   .changelog-btn-label {
     display: none;
   }
   .changelog-btn {
     padding: var(--space-2);
+    min-height: 36px;
+    min-width: 36px;
   }
   .changelog-panel {
-    width: calc(100vw - var(--space-6));
-    right: -40px;
+    width: calc(100vw - var(--space-4));
+    right: calc(-1 * var(--space-3));
+    max-height: 70vh;
   }
 }
 </style>

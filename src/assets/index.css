@@ -187,6 +187,34 @@
   --sidebar-w: 380px;
 }
 
+/* ── Mobile layout overrides ── */
+@media (max-width: 768px) {
+  :root {
+    --header-h: 52px;
+    --sidebar-w: 100%;
+    --text-xs: 0.75rem;    /* slightly larger for readability */
+    --text-sm: 0.875rem;
+  }
+
+  html {
+    /* Prevent font size inflation on orientation change */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Better tap targets */
+  button, [role="button"] {
+    min-height: 40px;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) {
+    a:hover, button:hover {
+      opacity: 1;
+    }
+  }
+}
+
 /* ── Base Styles ── */
 html {
   font-size: 16px;

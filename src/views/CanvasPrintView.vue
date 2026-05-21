@@ -2,9 +2,35 @@
   <div class="print-view-layout">
     <Header />
 
+    <!-- Mobile Tab Bar -->
+    <div class="mobile-tabbar">
+      <button
+        class="mobile-tab"
+        :class="{ active: mobileTab === 'preview' }"
+        @click="mobileTab = 'preview'"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M4 4h6M4 7h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+        {{ t('base.printTitle') }}
+      </button>
+      <button
+        class="mobile-tab"
+        :class="{ active: mobileTab === 'settings' }"
+        @click="mobileTab = 'settings'"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M7 1v2M7 11v2M1 7h2M11 7h2M2.93 2.93l1.41 1.41M9.66 9.66l1.41 1.41M9.66 4.34l1.41-1.41M2.93 11.07l1.41-1.41" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        {{ t('settings.settings') }}
+      </button>
+    </div>
+
     <!-- Sidebar Split View -->
     <div class="split-view">
-      <aside class="sidebar-panel">
+      <aside class="sidebar-panel" :class="{ 'mobile-hidden': mobileTab !== 'settings' }">
         <div class="sidebar-content">
           <PDFUpload @update:pdf="pdf = $event" />
           <PDFInfo :pdf="pdf" v-if="pdf" @remove="pdf = undefined" />
@@ -24,13 +50,43 @@
         </div>
       </aside>
 
-      <main class="preview-panel">
+      <main class="preview-panel" :class="{ 'mobile-hidden': mobileTab !== 'preview' }">
         <PreviewCompare
           :pdfRenderer="pdfRenderer"
           :scanRenderer="printRenderer"
           :scale="config.scale"
         />
       </main>
+    </div>
+
+    <!-- Mobile Sticky Generate Button (shown on preview tab) -->
+    <div class="mobile-fab" v-if="mobileTab === 'preview'">
+      <button
+        class="mobile-fab-btn"
+        :class="{ 'processing': saving }"
+        @click="saving ? null : (printedPDF ? download() : generate())"
+        :disabled="saving"
+      >
+        <template v-if="saving">
+          <span class="spinner-sm" />
+          <span>{{ t('actions.generating') }} {{ Math.round((progress ?? 0) * 100) }}%</span>
+        </template>
+        <template v-else-if="printedPDF">
+          <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
+            <path d="M7 2v7M4.5 7l2.5 2.5L9.5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 11h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <span>{{ t('actions.downloadScannedPDF') }}</span>
+        </template>
+        <template v-else>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8c0 2.76-2.24 5-5 5S3 10.76 3 8s2.24-5 5-5c1.23 0 2.36.45 3.23 1.19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="8" cy="8" r="2" fill="currentColor"/>
+            <path d="M11 3l.5 2.5-2.5-.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ t('actions.generateScannedPDF') }}</span>
+        </template>
+      </button>
     </div>
   </div>
 </template>
@@ -51,6 +107,9 @@ import { useSavePrintedPDF } from '@/composables/save-printed-pdf'
 import PDFInfo from '@/components/pdf-upload/PDFInfo.vue'
 import { PrintCacher } from '@/utils/print-renderer/print-cacher'
 import { useMessage } from 'naive-ui'
+import { fileSave } from 'browser-fs-access'
+
+const mobileTab = ref<'preview' | 'settings'>('preview')
 
 const { t } = useI18n()
 const message = useMessage()
@@ -121,6 +180,22 @@ const generate = async () => {
     message.error(t('actions.generateError') + (e as Error).message)
   }
 }
+
+const download = async () => {
+  if (!printedPDF.value) return
+  try {
+    await fileSave(printedPDF.value, {
+      fileName: printedPDF.value.name,
+      extensions: ['.pdf'],
+      mimeTypes: ['application/pdf'],
+      startIn: 'downloads',
+      description: 'PDF File',
+      id: 'pdfprn'
+    })
+  } catch (err) {
+    // User cancelled
+  }
+}
 </script>
 
 <style scoped>
@@ -187,28 +262,148 @@ const generate = async () => {
   margin: var(--space-4) 0;
 }
 
-/* Responsive adjustment for Mobile */
+/* ── Mobile Tab Bar (hidden on desktop) ── */
+.mobile-tabbar {
+  display: none;
+}
+
+/* ── Mobile FAB (hidden on desktop) ── */
+.mobile-fab {
+  display: none;
+}
+
+/* ── Mobile Responsive ── */
 @media (max-width: 768px) {
-  .split-view {
-    flex-direction: column;
-    overflow-y: auto;
-    height: auto;
+  .print-view-layout {
+    height: 100dvh; /* use dynamic viewport on mobile browsers */
+    overflow: hidden;
   }
 
+  /* Tab bar appears on mobile */
+  .mobile-tabbar {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    flex-shrink: 0;
+  }
+
+  .mobile-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition);
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.02em;
+  }
+
+  .mobile-tab.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+    background: var(--color-accent-glow);
+  }
+
+  .split-view {
+    flex-direction: column;
+    overflow: hidden;
+    height: calc(100dvh - var(--header-h) - 44px); /* subtract tab bar */
+  }
+
+  /* Panel visibility toggling on mobile */
   .sidebar-panel {
     width: 100%;
+    height: 100%;
     border-right: none;
-    border-bottom: 1px solid var(--color-border);
-    height: auto;
-    overflow-y: visible;
-    padding: var(--space-4);
+    border-bottom: none;
+    overflow-y: auto;
+    padding: var(--space-4) var(--space-4) 100px; /* bottom padding for FAB */
+    -webkit-overflow-scrolling: touch;
   }
 
   .preview-panel {
     width: 100%;
-    height: 600px;
+    height: 100%;
     overflow-y: auto;
-    padding: var(--space-4);
+    padding: var(--space-3) var(--space-3) 88px; /* bottom padding for FAB */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  /* Mobile sticky generate button */
+  .mobile-fab {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-3) var(--space-4);
+    padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(var(--color-surface-rgb, 255,255,255), 0.95);
+  }
+
+  .mobile-fab-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.02em;
+    min-height: 48px; /* touch target */
+  }
+
+  .mobile-fab-btn:active:not(:disabled) {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  .mobile-fab-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .mobile-fab-btn.processing {
+    background: var(--color-accent-dim);
+  }
+
+  /* Spinner inside FAB */
+  .spinner-sm {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 }
 </style>
