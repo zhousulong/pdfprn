@@ -233,6 +233,8 @@ const download = async () => {
   padding: var(--space-4);
   overflow-y: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Custom Scrollbars */

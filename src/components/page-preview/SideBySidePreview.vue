@@ -1,25 +1,46 @@
 <template>
-  <n-grid cols="1 m:2" x-gap="25px" y-gap="25px" responsive="screen" class="preview-grid">
-    <n-grid-item class="preview-grid-item">
+  <div class="preview-grid">
+    <div class="preview-grid-item">
       <slot name="pdf" />
-    </n-grid-item>
-    <n-grid-item class="preview-grid-item">
+    </div>
+    <div class="preview-grid-item">
       <slot name="scan" />
-    </n-grid-item>
-  </n-grid>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { NGrid, NGridItem } from 'naive-ui'
+// No grid imports needed
 </script>
 
 <style scoped>
 .preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
+
 .preview-grid-item {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .preview-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    height: auto;
+  }
+  .preview-grid-item {
+    height: auto;
+  }
 }
 </style>

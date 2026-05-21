@@ -1,19 +1,23 @@
 <template>
-  <n-space vertical>
-    <SideBySidePreview>
-      <template #pdf>
-        <ImagePreview :image="image?.blob" />
-      </template>
-      <template #scan>
-        <ImagePreview
-          :image="scanning ? undefined : scanImage?.blob"
-          :height="image?.height"
-          :width="image?.width"
-        />
-      </template>
-    </SideBySidePreview>
-    <PreviewPagination v-model:page="page" :numPages="numPages" v-if="numPages >= 2" />
-  </n-space>
+  <div class="preview-compare-container">
+    <div class="preview-compare-main">
+      <SideBySidePreview>
+        <template #pdf>
+          <ImagePreview :image="image?.blob" />
+        </template>
+        <template #scan>
+          <ImagePreview
+            :image="scanning ? undefined : scanImage?.blob"
+            :height="image?.height"
+            :width="image?.width"
+          />
+        </template>
+      </SideBySidePreview>
+    </div>
+    <div class="preview-compare-pagination" v-if="numPages >= 2">
+      <PreviewPagination v-model:page="page" :numPages="numPages" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -22,7 +26,7 @@ import ImagePreview from './ImagePreview.vue'
 import { ref } from 'vue'
 import { computedAsync } from '@vueuse/core'
 import PreviewPagination from './PreviewPagination.vue'
-import { NSpace } from 'naive-ui'
+// No NSpace import needed
 
 const page = ref(1)
 const scanning = ref(false)
@@ -99,3 +103,39 @@ const numPages = computedAsync(async () => {
   return await props.pdfRenderer.getNumPages()
 }, 1)
 </script>
+
+<style scoped>
+.preview-compare-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.preview-compare-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.preview-compare-pagination {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .preview-compare-container {
+    height: auto;
+  }
+  .preview-compare-main {
+    flex: none;
+    height: auto;
+  }
+}
+</style>

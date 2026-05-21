@@ -43,6 +43,9 @@ const frameStyle = computed(() => {
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 
@@ -72,12 +75,11 @@ const frameStyle = computed(() => {
   height: 100%;
 }
 
-/* On desktop, restrict height to fit on screen and let aspect-ratio size the width */
+/* On desktop, fit within parent container height and let aspect-ratio size the width */
 @media (min-width: 769px) {
   .page-frame {
-    height: calc(100vh - var(--header-h) - 160px);
+    height: 100%;
     width: auto;
-    max-width: 100%;
   }
 }
 </style>
