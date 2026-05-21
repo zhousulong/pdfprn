@@ -11,7 +11,7 @@
       </span>
       <div class="logo-text">
         <div class="logo-title-row">
-          <span class="logo-name">{{ t('base.title') }}</span>
+          <h1 class="logo-name">{{ t('base.title') }}</h1>
           <span class="version-badge">v{{ APP_VERSION }}</span>
         </div>
         <span class="logo-sub">{{ t('base.subtitle') }}</span>

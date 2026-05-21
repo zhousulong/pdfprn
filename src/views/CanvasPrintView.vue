@@ -203,7 +203,7 @@ const download = async () => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: var(--color-bg);
   color: var(--color-text);
   overflow: hidden;
@@ -214,7 +214,7 @@ const download = async () => {
   display: flex;
   flex: 1;
   overflow: hidden;
-  height: calc(100vh - var(--header-h));
+  min-height: 0;
 }
 
 .sidebar-panel {
@@ -235,6 +235,12 @@ const download = async () => {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 769px) {
+  .preview-panel {
+    overflow: hidden;
+  }
 }
 
 /* Custom Scrollbars */

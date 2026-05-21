@@ -413,4 +413,13 @@ label {
   margin: var(--space-3) 0;
 }
 
+@media (min-width: 769px) {
+  html, body, #app, .view, .n-config-provider, .n-message-provider {
+    height: 100vh !important;
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+}
+
+
 
